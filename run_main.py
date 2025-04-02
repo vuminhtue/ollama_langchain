@@ -9,13 +9,13 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings.ollama import OllamaEmbeddings
 ollama_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
 
-persist_directory = './docs/sample1/'
+persist_directory = './sample1/'
 embedding = OllamaEmbeddings(model="mxbai-embed-large")
 vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
 
 from langchain.chat_models import ChatOllama
 #llm_name = "deepseek-r1:1.5b"
-llm_name = st.sidebar.selectbox("Model", ["deepseek-r1:1.5b", "llama3.2:1b"])
+llm_name = st.sidebar.selectbox("Model", ["llama3.2:1b"])
 temperature = st.sidebar.slider("Temperature",0.0,1.0,0.5,0.01)
 print(llm_name)
 
@@ -37,7 +37,7 @@ def my_chatbot(freeform_text):
     return response
 
 
-st.image("./docs/image/pony.jpeg")
+st.image("./pony.jpeg")
 st.title("AskPeruna")
 
 freeform_text = st.sidebar.text_area(label="Ask Peruna?",max_chars=100)
